@@ -11,7 +11,7 @@ var drawing_index = -1
 var drawing_history = []
 
 function toggle_round_card(onlyOpen = false) {
-
+    clearInterval(window.roundTimer)
     let desired_drawing_txt = document.getElementById('desired_drawing')
     let inner_desired_drawing_txt = document.getElementById('inner_desired_drawing')
 
@@ -22,10 +22,6 @@ function toggle_round_card(onlyOpen = false) {
         if (drawing_history.length > 20) {
             drawing_history.splice(0, 1);
         }
-
-        // 卡片定時五秒鐘
-        num = 0
-        fiveTimeFnc()
 
         drawing_index = Math.floor(Math.random() * Object.keys(labels).length)
         var i = 0
@@ -40,6 +36,17 @@ function toggle_round_card(onlyOpen = false) {
 
         desired_drawing_txt.textContent = labels[drawing_index];
         card.className = 'cover visible';
+
+        // 倒計時
+        window.roundNum = 5
+        $('#start-btn').text(`開始（${window.roundNum}）`)
+        window.roundTimer = setInterval(() => {
+            window.roundNum -= 1
+            $('#start-btn').text(`開始（${window.roundNum}）`)
+            if (window.roundNum <= 0) {
+                toggle_game_canvas()
+            }
+        }, 1000)
 
         setTimeout(function () {
             inner_desired_drawing_txt.textContent = 'Draw: ' + labels[drawing_index];
@@ -71,23 +78,6 @@ function toggle_game_canvas() {
 
 }
 
-function toggle_game_canvas_button() {
-    if (active_page != pages.game) {
-        let game = document.getElementById('game-canvas')// 進入遊戲
-        game.style.display = 'flex'
-        toggle_round_card() // 關閉卡片
-        active_page = pages.game;
-        start_drawing() // 遊戲開始計時
-        num = 0
-        clearInterval(fiveTime)  // 清空定時器
-    } else { // 關閉遊戲
-        game = document.getElementById('game-canvas')
-        game.style.display = 'none'
-        stop_drawing() //遊戲結束計時
-        active_page = pages.main;
-    }
-}
-
 function toggle_about() {
     if (active_page != pages.about) { //顯示咨詢
         let about = document.getElementById('about')
@@ -105,24 +95,4 @@ function toggle_about() {
 function enter_main() {//回車進入遊戲 清除繪畫歷史
     toggle_game_canvas()
     drawing_history = []
-}
-
-// 計時情況
-// 點擊開始時自動計時 toggle_round_card(true) START DRAWING
-// 點擊 toggle_game_canvas() let's go 清空計時
-// 小題完成時，進入頁面開始計時
-
-var fiveTime
-var num = 0
-function fiveTimeFnc() {
-    fiveTime = setInterval(function () {
-        num++
-        console.log(num)
-        if (num >= 5) {
-            // 進入遊戲 關閉卡片
-            toggle_game_canvas()
-            // 關閉計時
-            clearInterval(fiveTime)
-        }
-    }, 1000)
 }
