@@ -22,6 +22,8 @@ function toggle_round_card(onlyOpen = false) {
         if (drawing_history.length > 20) {
             drawing_history.splice(0, 1);
         }
+
+        // 卡片定時五秒鐘
         num = 0
         fiveTimeFnc()
 
@@ -67,6 +69,23 @@ function toggle_game_canvas() {
         active_page = pages.main;
     }
 
+}
+
+function toggle_game_canvas_button() {
+    if (active_page != pages.game) {
+        let game = document.getElementById('game-canvas')// 進入遊戲
+        game.style.display = 'flex'
+        toggle_round_card() // 關閉卡片
+        active_page = pages.game;
+        start_drawing() // 遊戲開始計時
+        num = 0
+        clearInterval(fiveTime)  // 清空定時器
+    } else { // 關閉遊戲
+        game = document.getElementById('game-canvas')
+        game.style.display = 'none'
+        stop_drawing() //遊戲結束計時
+        active_page = pages.main;
+    }
 }
 
 function toggle_about() {
