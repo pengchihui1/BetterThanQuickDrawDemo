@@ -126,7 +126,6 @@ function Pen(new_context, w, h) {
         // 不斷猜測並顯示在頁面上
         prediction_label.textContent = labels[prediction];
         // 根據編號判斷是否畫的相同(相同便是畫對了)
-        prediction = drawing_index//純屬測試用
         if (prediction == drawing_index) {
             // 關閉卡片
             toggle_round_card()
@@ -135,7 +134,6 @@ function Pen(new_context, w, h) {
             fraction.textContent = window.fractionNumber
             //顯示總分
             $('#totalScore').text(`${window.fractionNumber}`)
-
         }
 
     }
