@@ -125,13 +125,14 @@ function Pen(new_context, w, h) {
 
         // 不斷猜測並顯示在頁面上
         prediction_label.textContent = labels[prediction];
-        // 根據編號判斷是否相同 畫的時候答對時
+        // 根據編號判斷是否畫的相同(相同便是畫對了)
+        prediction = drawing_index//純屬測試用
         if (prediction == drawing_index) {
-            // 重新產生題頁面
+            // 關閉卡片
             toggle_round_card()
-            // 計算分數
-            fractionNumber = parseInt(fractionNumber + 100) || 0
-            fraction.textContent = fractionNumber
+            // 計算分數（計分）
+            window.fractionNumber += 100
+            fraction.textContent = window.fractionNumber
         }
 
     }
@@ -201,7 +202,7 @@ function ev_canvas(ev) {
 }
 
 var Timer; // 每一題的計時器
-var start_timer_from = 2 // 時間
+var start_timer_from = 20 // 每題時間
 
 //For string formatting
 String.form = function (str, arr) {

@@ -1,9 +1,10 @@
 
 start_button = document.getElementById('mainButton')
 
-const pages = { "main": 1, "card": 2, "game": 3, "about": 4 }
+const pages = { "main": 1, "card": 2, "game": 3, "about": 4, "end_card": 5 }
 
-var fractionNumber = 0 // 分數
+window.option = 0//题目
+window.fractionNumber = 0 // 分數
 
 var active_page = pages.main;
 
@@ -12,12 +13,13 @@ var drawing_history = []
 
 function toggle_round_card(onlyOpen = false) {
     clearInterval(window.roundTimer)
+
     let desired_drawing_txt = document.getElementById('desired_drawing')
     let inner_desired_drawing_txt = document.getElementById('inner_desired_drawing')
 
     let card = document.getElementById('round-card')
 
-    if (active_page != pages.card && active_page != pages.about || onlyOpen) {// 顯示卡片
+    if (active_page != pages.card && active_page != pages.about && active_page || onlyOpen) {// 顯示卡片
 
         if (drawing_history.length > 20) {
             drawing_history.splice(0, 1);
@@ -34,19 +36,56 @@ function toggle_round_card(onlyOpen = false) {
         }
         drawing_history.push(drawing_index)
 
-        desired_drawing_txt.textContent = labels[drawing_index];
+        desired_drawing_txt.textContent = `第${window.option + 1}題：${labels[drawing_index]}`;
         card.className = 'cover visible';
 
-        // 倒計時
-        window.roundNum = 5
-        $('#start-btn').text(`開始（${window.roundNum}）`)
-        window.roundTimer = setInterval(() => {
-            window.roundNum -= 1
+        // 清空猜測
+        prediction_label = document.getElementById('prediction');
+        prediction_label.textContent = '...';
+        // 顯示猜測樣式
+        prediction_label.style.zIndex = 50
+
+        // 题目累加
+        window.option++
+        if (window.option > 6) {//六題後到結束頁面
+            game = document.getElementById('game-canvas')
+            end_card = document.getElementById('end-card')
+            main = document.getElementById('main')
+            game.style.display = 'none'//隱藏遊戲
+            card.className = 'cover invisible'//隱藏卡片
+            main.style.display = 'none'  //隱藏開始頁面
+            active_page = pages.end_card;
+            end_card.style.display = 'block'//顯示結束頁面
+            stop_drawing() //遊戲結束計時
+            clearInterval(window.roundTimer)//清空卡片倒計時
+            window.option = 0//清空題目
+            window.fractionNumber = 0// 清空計分
+            prediction_label.style.zIndex = 0 //猜測樣式降級
+            drawing_history = []//清空歷史繪畫
+
+            // 結束頁面倒計時
+            window.endCarNum = 10
+            $('#endButton').text(`再來（${window.endCarNum}）`)
+            window.endCarTimer = setInterval(() => {
+                window.endCarNum -= 1
+                $('#endButton').text(`再來（${window.endCarNum}）`)
+                if (window.endCarNum <= 0) {
+                    again()
+                }
+            }, 1000)
+
+        } else {
+            // 倒計時
+            window.roundNum = 5
             $('#start-btn').text(`開始（${window.roundNum}）`)
-            if (window.roundNum <= 0) {
-                toggle_game_canvas()
-            }
-        }, 1000)
+            window.roundTimer = setInterval(() => {
+                window.roundNum -= 1
+                $('#start-btn').text(`開始（${window.roundNum}）`)
+                if (window.roundNum <= 0) {
+                    toggle_game_canvas()
+                }
+            }, 1000)
+        }
 
         setTimeout(function () {
             inner_desired_drawing_txt.textContent = 'Draw: ' + labels[drawing_index];
@@ -95,4 +134,16 @@ function toggle_about() {
 function enter_main() {//回車進入遊戲 清除繪畫歷史
     toggle_game_canvas()
     drawing_history = []
+}
+
+function again() {
+    var end_card = document.getElementById('end-card')
+    var main = document.getElementById('main')
+    var fraction = document.getElementById('fraction');
+    active_page = pages.main;
+    main.style.display = 'block'
+    end_card.style.display = 'none'
+    clearInterval(window.endCarTimer) //清除倒計時
+    window.fractionNumber = 0 //重置得分
+    fraction.textContent = window.fractionNumber
 }

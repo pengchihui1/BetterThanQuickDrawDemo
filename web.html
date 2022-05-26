@@ -8,17 +8,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/web_icon.svg">
 
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/3.12.0/tf.min.js"></script>
-
-
 </head>
 
-
-
 <body>
-
+    <!-- 開始頁面 -->
     <div id='main' style="
             width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
 
@@ -27,7 +22,6 @@
         <div class="rectangle github" onclick="location.href='https://github.com/Yousef0M/BetterThanQuickDraw'">
             <img src="assets/github_logo_scetchy.png" class="github_img" width=100% height=100% draggable="false" />
         </div>
-
 
         <div id='mainButton' class="mainButton web"
             onclick="if (typeof toggle_round_card!== 'undefined') toggle_round_card(true)">
@@ -40,9 +34,9 @@
                 href="https://github.com/Yousef0M/BetterThanQuickDraw">github!</a></div>
         <div id="text" style="margin-top: -5px;">Made By Yousef</div>
 
-
     </div>
 
+    <!-- 卡片頁面 -->
     <div id='round-card' class="cover invisible">
 
         <div class='column' style="width: 100%; height: fit-content;align-items: center;">
@@ -65,6 +59,7 @@
             0/6</div> -->
     </div>
 
+    <!-- 資訊頁面 -->
     <div id='about' class='cover about invisible'>
         <div class='button' style="
             display: flex;
@@ -128,15 +123,15 @@
                 The website was created by Yousef Mahmood, and my sole purpose was to have fun. It was hugely inspired
                 by the game <a class="link" href="https://quickdraw.withgoogle.com">Quick Draw</a>.
             </div>
-
         </div>
-
     </div>
-    <div id='game-canvas' class='game-canvas'>
 
+    <!-- 遊戲頁面 -->
+    <div id='game-canvas' class='game-canvas'>
+        
         <canvas id='canvas'></canvas>
         <!-- <canvas id='outcanvas' style='background:rgb(255, 186, 186)'></canvas> -->
-
+        
         <div id='label' class="label">
             <div id='inner_desired_drawing' class='text' style='left: 37px;width:30%'>
                 Draw: Cat
@@ -146,7 +141,6 @@
                 <p id='timer'>0:30</p>
             </div>
 
-
             <div class='row'>
                 <p style='color:white;font-size:30px;margin:auto 40px;'>分數：<span id='fraction'>0</span></p></div>
             </div>
@@ -154,8 +148,14 @@
         </div>
 
         <div id='prediction' style="color:red">...</div>
+    </div>
 
-
+    <!-- 結束頁面 -->
+    <div id='end-card' style='display: none;' >
+        <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <p class="endP">完了!</p>
+            <div id='endButton' class="endButton web" onclick="again()">再來（10）</div>
+        </div>
     </div>
 
     <script defer type="text/javascript">

@@ -104,9 +104,50 @@ body {
 .mainButton.web:active {
   transform: translate(-50%, -50%) scale(1.1, 1.1);
 }
-.mainButton.start:active {
+.mainButton.start:active{
   transform: scale(1.1, 1.1);
 }
+
+.endP{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 69px;
+}
+
+.endButton {
+  border-radius: 101px;
+  box-shadow: 16px 18px 0px #00000040;
+
+  font-family: "doodleFont";
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+
+.endButton.web {
+  width:400px;
+  height: 120px;
+  background: #00c0a3;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 120px;
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+}
+
+
 
 #text {
   position: absolute;
@@ -388,5 +429,5 @@ canvas {
   font-size: 38px;
   user-select: none;
   padding: 0px 27px 0px 27px;
-  z-index: 51;
+  /* z-index: 51; */
 }
