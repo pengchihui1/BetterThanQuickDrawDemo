@@ -122,7 +122,8 @@ function Pen(new_context, w, h) {
 
 
         prediction = predict(tool.predictionCanvas, tool.reducedStrokes)
-
+        // 顯示猜測樣式
+        prediction_label.style.zIndex = 50
         // 不斷猜測並顯示在頁面上
         prediction_label.textContent = labels[prediction];
         // 根據編號判斷是否畫的相同(相同便是畫對了)
@@ -133,6 +134,9 @@ function Pen(new_context, w, h) {
             // 計算分數（計分）
             window.fractionNumber += 100
             fraction.textContent = window.fractionNumber
+            //顯示總分
+            $('#totalScore').text(`${window.fractionNumber}`)
+
         }
 
     }

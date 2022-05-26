@@ -108,6 +108,60 @@ body {
   transform: scale(1.1, 1.1);
 }
 
+.main_title {
+  border-radius: 101px;
+
+
+  font-family: "doodleFont";
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+.main_title.web {
+  width: 892px;
+  height: 202px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 202px;
+  color: rgb(255, 255, 255);
+  font-size: 69px;
+}
+
+#main_button{
+  width: 892px;
+  height: 202px;
+
+  position: absolute;
+  top:90%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  line-height: 202px;
+  font-size: 69px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main_button>button{
+  background: #00c0a3;
+  color: rgb(255, 255, 255);
+  padding:1rem ;
+  font-size: 20px;
+  border-radius: 101px;
+  border:none;
+}
+
 .endP{
   position: absolute;
   top: 20%;

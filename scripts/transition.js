@@ -16,8 +16,10 @@ function toggle_round_card(onlyOpen = false) {
 
     let desired_drawing_txt = document.getElementById('desired_drawing')
     let inner_desired_drawing_txt = document.getElementById('inner_desired_drawing')
+    let prediction_label = document.getElementById('prediction');
 
     let card = document.getElementById('round-card')
+
 
     if (active_page != pages.card && active_page != pages.about && active_page || onlyOpen) {// 顯示卡片
 
@@ -39,17 +41,12 @@ function toggle_round_card(onlyOpen = false) {
         desired_drawing_txt.textContent = `第${window.option + 1}題：${labels[drawing_index]}`;
         card.className = 'cover visible';
 
-        // 清空猜測
-        prediction_label = document.getElementById('prediction');
-        prediction_label.textContent = '...';
-        // 顯示猜測樣式
-        prediction_label.style.zIndex = 50
-
         // 题目累加
         window.option++
         if (window.option > 6) {//六題後到結束頁面
             game = document.getElementById('game-canvas')
             end_card = document.getElementById('end-card')
+            main = document.getElementById('main')
             main = document.getElementById('main')
             game.style.display = 'none'//隱藏遊戲
             card.className = 'cover invisible'//隱藏卡片
@@ -59,16 +56,15 @@ function toggle_round_card(onlyOpen = false) {
             stop_drawing() //遊戲結束計時
             clearInterval(window.roundTimer)//清空卡片倒計時
             window.option = 0//清空題目
-            window.fractionNumber = 0// 清空計分
             prediction_label.style.zIndex = 0 //猜測樣式降級
             drawing_history = []//清空歷史繪畫
 
             // 結束頁面倒計時
             window.endCarNum = 10
-            $('#endButton').text(`再來（${window.endCarNum}）`)
+            $('#endButton').text(`再來！（${window.endCarNum}）`)
             window.endCarTimer = setInterval(() => {
                 window.endCarNum -= 1
-                $('#endButton').text(`再來（${window.endCarNum}）`)
+                $('#endButton').text(`再來！（${window.endCarNum}）`)
                 if (window.endCarNum <= 0) {
                     again()
                 }
@@ -98,6 +94,7 @@ function toggle_round_card(onlyOpen = false) {
     }
     else {// 關閉卡片
         card.className = 'cover invisible'
+        prediction_label.style.zIndex = -10//繪畫中才顯示猜測內容
     }
 }
 
@@ -140,10 +137,12 @@ function again() {
     var end_card = document.getElementById('end-card')
     var main = document.getElementById('main')
     var fraction = document.getElementById('fraction');
+    var prediction = document.getElementById('prediction');
     active_page = pages.main;
     main.style.display = 'block'
     end_card.style.display = 'none'
     clearInterval(window.endCarTimer) //清除倒計時
     window.fractionNumber = 0 //重置得分
     fraction.textContent = window.fractionNumber
+    prediction.style.zIndex = -10
 }

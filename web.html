@@ -14,26 +14,17 @@
 
 <body>
     <!-- 開始頁面 -->
-    <div id='main' style="
-            width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
-
-        <div class="rectangle info" onclick="toggle_about()">?</div>
-
-        <div class="rectangle github" onclick="location.href='https://github.com/Yousef0M/BetterThanQuickDraw'">
-            <img src="assets/github_logo_scetchy.png" class="github_img" width=100% height=100% draggable="false" />
-        </div>
-
-        <div id='mainButton' class="mainButton web"
-            onclick="if (typeof toggle_round_card!== 'undefined') toggle_round_card(true)">
-            START DRAWING
-        </div>
+    <div id='main' style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+       
+       <div id='main_title' class="main_title web" >你猜我畫</div>
 
         <img class='frame' id='non_intractive' src=assets/frame.svg></img>
 
-        <div id="text" style="margin-top: -40px; font-size:15px;">The Code is available on <a class="link"
-                href="https://github.com/Yousef0M/BetterThanQuickDraw">github!</a></div>
-        <div id="text" style="margin-top: -5px;">Made By Yousef</div>
-
+         <div id='main_button' class="main_button">
+             <button  onclick="if (typeof toggle_round_card!== 'undefined') toggle_round_card(true)">中文遊玩</button>
+             <button  onclick="if (typeof toggle_round_card!== 'undefined') toggle_round_card(true)">play in english</button>
+             <button  onclick="if (typeof toggle_round_card!== 'undefined') toggle_round_card(true)">jogar em portugues  </button>
+         </div>
     </div>
 
     <!-- 卡片頁面 -->
@@ -41,8 +32,8 @@
 
         <div class='column' style="width: 100%; height: fit-content;align-items: center;">
 
-            <div class='text' style="font-size:40px;margin-bottom: 17px;">
-                Draw:
+            <div class='text' style="font-size:50px;margin-bottom: 17px;">
+                Draw
             </div>
             <div id='desired_drawing' class='text' style="font-size:120px">
                 Cat
@@ -147,14 +138,15 @@
 
         </div>
 
-        <div id='prediction' style="color:red">...</div>
+        <div id='prediction' style="color:red;z-index:-10;">...</div>
     </div>
 
     <!-- 結束頁面 -->
     <div id='end-card' style='display: none;' >
         <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
             <p class="endP">完了!</p>
-            <div id='endButton' class="endButton web" onclick="again()">再來（10）</div>
+            <p class="endP" style="top:30% ;">總分數：<span id='totalScore'>0</span></p>
+            <div id='endButton' class="endButton web" onclick="again()">再來！（10）</div>
         </div>
     </div>
 
