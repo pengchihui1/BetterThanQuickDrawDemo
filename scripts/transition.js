@@ -1,7 +1,13 @@
 
 start_button = document.getElementById('mainButton')
 
-const pages = { "main": 1, "card": 2, "game": 3, "about": 4, "end_card": 5 }
+const pages = {
+    "main": 1,
+    "card": 2,
+    "game": 3,
+    "about": 4,
+    "end_card": 5
+}
 
 window.option = 0//题目
 window.fractionNumber = 0 // 分數
@@ -133,16 +139,48 @@ function enter_main() {//回車進入遊戲 清除繪畫歷史
     drawing_history = []
 }
 
+// 重新開始遊戲
 function again() {
     var end_card = document.getElementById('end-card')
     var main = document.getElementById('main')
     var fraction = document.getElementById('fraction');
     var prediction = document.getElementById('prediction');
-    active_page = pages.main;
+    chinese = document.getElementById('introduction_chinese')
+    english = document.getElementById('introduction_english')
+    portuguese = document.getElementById('introduction_portuguese')
+    active_page = pages.main;//設置當前頁面
     main.style.display = 'block'
     end_card.style.display = 'none'
     clearInterval(window.endCarTimer) //清除倒計時
     window.fractionNumber = 0 //重置得分
     fraction.textContent = window.fractionNumber
     prediction.style.zIndex = -10
+
+    chinese.style.display = 'none'
+    english.style.display = 'none'
+    portuguese.style.display = 'none'
+}
+
+// 選擇語言
+function language_game(number) {
+    chinese = document.getElementById('introduction_chinese')
+    english = document.getElementById('introduction_english')
+    portuguese = document.getElementById('introduction_portuguese')
+    switch (parseInt(number)) {
+        case 1:
+            chinese.style.display = 'block'
+            english.style.display = 'none'
+            portuguese.style.display = 'none'
+            break;
+        case 2:
+            chinese.style.display = 'none'
+            english.style.display = 'block'
+            portuguese.style.display = 'none'
+            break;
+        case 3:
+            chinese.style.display = 'none'
+            english.style.display = 'none'
+            portuguese.style.display = 'block'
+            break;
+    }
 }

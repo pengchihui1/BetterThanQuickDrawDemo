@@ -108,6 +108,10 @@ body {
   transform: scale(1.1, 1.1);
 }
 
+.introduction{
+  display: none;
+}
+
 .main_title {
   border-radius: 101px;
 
@@ -483,5 +487,4 @@ canvas {
   font-size: 38px;
   user-select: none;
   padding: 0px 27px 0px 27px;
-  /* z-index: 51; */
 }

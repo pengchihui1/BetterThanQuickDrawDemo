@@ -1,18 +1,7 @@
-# BetterThanQuickDraw
-Artificial intelligence is used in the project to predict what you are drawing. An implementation of the Convolutional Neural Network in Javascript. It takes an image and predicts a number that represents a guess at what the image looks like.
+### 項目簡介
+基於輸入PIN嗎進行六小題繪畫，繪畫後可以看到所得成績
 
-The network was trained on 150 different concepts from Quick Draw Data using Python with the TensorFlow library, and the network was implemented in Javascript using TensorFlow.
-
-![alt text](https://github.com/Yousef0M/BetterThanQuickDraw/blob/main/Examble.png)
-
-The image above shows some of the preprocessed data.
-
-
-
-The network has 28x28 image input [grayscaled and thresholded image, two values in the image 0=black, 1=white].
-
-The recognition error on the test data set is 11% and the accuracy is 72.5%.
-
-
-
-The project was created by Yousef Mahmood, and my sole purpose was to have fun. It was hugely inspired by the game Quick Draw.
+### 主要功能
+1. 可選擇中文、英文、葡語進入遊戲，輸入pin嗎或直接開始遊戲進入到題目中進行繪畫
+2. 遊玩有六小題，每小題20秒，每題畫對了累加100分，每題繪畫中時，右下角會彈出猜測結果，每題時間到了會進入下一題
+3. 遊戲結束後，可以看到所得分數，可以點擊返回初始頁面，沒有點擊時過了三分种也會回到初始頁面

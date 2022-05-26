@@ -120,7 +120,6 @@ function Pen(new_context, w, h) {
         old_ctx.lineWidth = 5
         old_ctx.lineCap = 'round'
 
-
         prediction = predict(tool.predictionCanvas, tool.reducedStrokes)
         // 顯示猜測樣式
         prediction_label.style.zIndex = 50
