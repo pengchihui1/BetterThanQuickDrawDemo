@@ -111,12 +111,10 @@ body {
 .main_title {
   border-radius: 101px;
 
-
   font-family: "doodleFont";
   text-align: center;
   vertical-align: middle;
   user-select: none;
-  cursor: pointer;
 
   transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
     transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
@@ -160,6 +158,8 @@ body {
   font-size: 20px;
   border-radius: 101px;
   border:none;
+  width:200px;
+  cursor: pointer;
 }
 
 .endP{
